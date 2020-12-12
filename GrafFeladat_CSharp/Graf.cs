@@ -149,8 +149,33 @@ namespace GrafFeladat_CSharp
                 }
             }
         }
+        public void Osszefuggo()
+        {
+            Random rand = new Random();
+            int kezdopont = rand.Next(0, this.csucsok.Count);
 
+            List<int> bejart = new List<int>();
+            List<int> kovetkezok = new List<int>();
+            bejart.Add(kezdopont);
+            kovetkezok.Add(kezdopont);
 
+            int k = 0;
+            while (kovetkezok.Count != 0)
+            {
+                k = kovetkezok[0];
+                kovetkezok.RemoveAt(0);
+
+                for (int j = 0; j < this.elek.Count; j++)
+                {
+                    if (this.elek[j].Csucs1 == k && !(bejart.Contains(this.elek[j].Csucs2)))
+                    {
+                        kovetkezok.Add(this.elek[j].Csucs2);
+                        bejart.Add(this.elek[j].Csucs2);
+                    }
+                }
+            }
+            Console.WriteLine(bejart.Count == this.csucsok.Count?"A gráf összefüggő":"A gráf nem összefüggő");
+        }
 
         public override string ToString()
         {

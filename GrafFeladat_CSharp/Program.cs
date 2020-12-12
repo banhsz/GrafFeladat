@@ -22,11 +22,7 @@ namespace GrafFeladat_CSharp
 
             //Törlés
             /*
-            graf.Torol(1, 2);
-            graf.Torol(0, 2);
             graf.Torol(2, 3);
-            graf.Torol(3, 4);
-            graf.Torol(4, 5);
             graf.Torol(2, 4);
             */
 
@@ -37,6 +33,8 @@ namespace GrafFeladat_CSharp
             graf.SzellesegiBejar();
             graf.MelysegiBejar();
 
+            //Osszefuggoseg
+            graf.Osszefuggo();
 
 
 
