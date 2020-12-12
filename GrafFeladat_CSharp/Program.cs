@@ -20,7 +20,7 @@ namespace GrafFeladat_CSharp
             graf.Hozzaad(4, 5);
             graf.Hozzaad(2, 4);
 
-            //törlés
+            //Törlés
             /*
             graf.Torol(1, 2);
             graf.Torol(0, 2);
@@ -30,12 +30,12 @@ namespace GrafFeladat_CSharp
             graf.Torol(2, 4);
             */
 
+            //Élek - Csúcsok
             Console.WriteLine(graf);
 
-
-            //bejárás
+            //Bejárás
             graf.SzellesegiBejar();
-
+            graf.MelysegiBejar();
 
 
 

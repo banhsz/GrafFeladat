@@ -74,7 +74,7 @@ namespace GrafFeladat_CSharp
             // Ha találunk ilyen élt. akkor töröljük
             for (int i = 0; i < elek.Count; i++)
             {
-                if ((elek[i].Csucs1==cs1 && elek[i].Csucs2==cs2))
+                if ((elek[i].Csucs1 == cs1 && elek[i].Csucs2 == cs2))
                 {
                     elek.RemoveAt(i);
                 }
@@ -87,14 +87,13 @@ namespace GrafFeladat_CSharp
                 }
             }
         }
-
         public void SzellesegiBejar()
         {
             Random rand = new Random();
             int kezdopont = rand.Next(0, this.csucsok.Count);
 
             Console.WriteLine("Szélességi bejárás:");
-            Console.WriteLine("Kezdőpont: {0}",kezdopont);
+            Console.WriteLine("Kezdőpont: {0}", kezdopont);
 
             List<int> bejart = new List<int>();
             List<int> kovetkezok = new List<int>();
@@ -102,7 +101,7 @@ namespace GrafFeladat_CSharp
             kovetkezok.Add(kezdopont);
 
             int k = 0;
-            while (kovetkezok.Count!=0)
+            while (kovetkezok.Count != 0)
             {
                 k = kovetkezok[0];
                 kovetkezok.RemoveAt(0);
@@ -120,6 +119,38 @@ namespace GrafFeladat_CSharp
 
 
         }
+        public void MelysegiBejar()
+        {
+            Random rand = new Random();
+            int kezdopont = rand.Next(0, this.csucsok.Count);
+
+            Console.WriteLine("Mélységi bejárás:");
+            Console.WriteLine("Kezdőpont: {0}", kezdopont);
+
+            List<int> bejart = new List<int>();
+            Stack<int> kovetkezok = new Stack<int>();
+            bejart.Add(kezdopont);
+            kovetkezok.Push(kezdopont);
+
+            int k = 0;
+            while (kovetkezok.Count != 0)
+            {
+                k = kovetkezok.Peek();
+                kovetkezok.Pop();
+                Console.WriteLine(this.csucsok[k].ToString());
+
+                for (int j = 0; j < this.elek.Count; j++)
+                {
+                    if (this.elek[j].Csucs1 == k && !(bejart.Contains(this.elek[j].Csucs2)))
+                    {
+                        kovetkezok.Push(this.elek[j].Csucs2);
+                        bejart.Add(this.elek[j].Csucs2);
+                    }
+                }
+            }
+        }
+
+
 
         public override string ToString()
         {
