@@ -88,6 +88,39 @@ namespace GrafFeladat_CSharp
             }
         }
 
+        public void SzellesegiBejar()
+        {
+            Random rand = new Random();
+            int kezdopont = rand.Next(0, this.csucsok.Count);
+
+            Console.WriteLine("Szélességi bejárás:");
+            Console.WriteLine("Kezdőpont: {0}",kezdopont);
+
+            List<int> bejart = new List<int>();
+            List<int> kovetkezok = new List<int>();
+            bejart.Add(kezdopont);
+            kovetkezok.Add(kezdopont);
+
+            int k = 0;
+            while (kovetkezok.Count!=0)
+            {
+                k = kovetkezok[0];
+                kovetkezok.RemoveAt(0);
+                Console.WriteLine(this.csucsok[k].ToString());
+
+                for (int j = 0; j < this.elek.Count; j++)
+                {
+                    if (this.elek[j].Csucs1 == k && !(bejart.Contains(this.elek[j].Csucs2)))
+                    {
+                        kovetkezok.Add(this.elek[j].Csucs2);
+                        bejart.Add(this.elek[j].Csucs2);
+                    }
+                }
+            }
+
+
+        }
+
         public override string ToString()
         {
             string str = "Csucsok:\n";
