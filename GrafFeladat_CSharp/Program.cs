@@ -22,7 +22,12 @@ namespace GrafFeladat_CSharp
 
             //Törlés
             /*
+            graf.Torol(0, 1);
+            graf.Torol(1, 2);
+            graf.Torol(0, 2);
             graf.Torol(2, 3);
+            graf.Torol(3, 4);
+            graf.Torol(4, 5);
             graf.Torol(2, 4);
             */
 
@@ -34,8 +39,10 @@ namespace GrafFeladat_CSharp
             graf.MelysegiBejar();
 
             //Osszefuggoseg
-            graf.Osszefuggo();
+            Console.WriteLine(graf.Osszefuggo() ? "A gráf összefüggő\n" : "A gráf nem összefüggő\n");
 
+            //MohoSzinezes
+            graf.MohoSzinezes();
 
 
 

@@ -116,8 +116,7 @@ namespace GrafFeladat_CSharp
                     }
                 }
             }
-
-
+            Console.WriteLine();
         }
         public void MelysegiBejar()
         {
@@ -148,8 +147,9 @@ namespace GrafFeladat_CSharp
                     }
                 }
             }
+            Console.WriteLine();
         }
-        public void Osszefuggo()
+        public bool Osszefuggo()
         {
             Random rand = new Random();
             int kezdopont = rand.Next(0, this.csucsok.Count);
@@ -174,8 +174,49 @@ namespace GrafFeladat_CSharp
                     }
                 }
             }
-            Console.WriteLine(bejart.Count == this.csucsok.Count?"A gráf összefüggő":"A gráf nem összefüggő");
+            return bejart.Count == this.csucsok.Count;
         }
+        public void MohoSzinezes()
+        {
+            Console.WriteLine("Mohó színezés:");
+            Dictionary<int, int> szinezes = new Dictionary<int, int>();
+            int maxSzin = this.csucsokSzama;
+
+            //végigmegyünk minden csucson
+            for (int i = 0; i < this.csucsokSzama; i++)
+            {
+                //alapból minden szint használhatunk
+                List<int> valaszthatoSzinek = new List<int>();
+                for (int j = 0; j < this.csucsokSzama; j++)
+                {
+                    valaszthatoSzinek.Add(j);
+                }
+
+                //végigmegyünk az éleken
+                for (int j = 0; j < this.elek.Count; j++)
+                {
+                    //ha az adott él a vizsgált csucsból(i) indul
+                    if (this.elek[j].Csucs1 == i)
+                    {
+                        //de ha az a csúcs ahova mutat már szinezve van
+                        if (szinezes.ContainsKey(this.elek[j].Csucs2))
+                        {
+                            int szin = szinezes[this.elek[j].Csucs2];
+                            valaszthatoSzinek.Remove(szin);
+                        }
+                    }
+                }
+                valaszthatoSzinek.Sort();
+                int valasztottSzin = valaszthatoSzinek[0];
+                szinezes.Add(i, valasztottSzin);
+            }
+
+            foreach (var item in szinezes)
+            {
+                Console.WriteLine("Csúcs: {0} , Szín: {1}", item.Key, item.Value);
+            }
+        }
+           
 
         public override string ToString()
         {
